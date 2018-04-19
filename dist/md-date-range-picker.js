@@ -1,7 +1,7 @@
 /*
 * Name: md-date-range-picker
-* Version: 0.8.2
-* Build Date: 2018-3-2
+* Version: 0.8.3
+* Build Date: 4/18/2018
 * Author: roel barreto <greatcodeideas@gmail.com>
 */
 (function (window, angular) {
@@ -244,14 +244,16 @@
             }
 
             $scope.$watch('selectedTemplate', function (next, prev) {
-                if (next !== prev && $scope.dateStart && !$scope.inCurrentMonth($scope.dateStart) && !$scope.inCurrentMonth($scope.dateStart, true)) {
-                    $scope.focusToDate($scope.dateStart);
-                }
+              if (next != prev && $scope.dateStart && !$scope.inCurrentMonth($scope.dateStart) && !$scope.inCurrentMonth($scope.dateStart, true)) {
+                $scope.focusToDate($scope.dateStart);
+              }
             });
             $scope.$watch('dateStart', function (next, prev) {
-                if (next !== prev && $scope.dateStart && !$scope.inCurrentMonth($scope.dateStart) && !$scope.inCurrentMonth($scope.dateStart, true)) {
-                    $scope.focusToDate($scope.dateStart);
-                }
+              if (next !== prev && $scope.dateStart &&
+                (!$scope.inCurrentMonth($scope.dateStart) &&
+                  ($scope.onePanel || (!$scope.inCurrentMonth($scope.dateStart, true) && !$scope.onePanel)))) {
+                $scope.focusToDate($scope.dateStart);
+              }
             });
 
             /**
